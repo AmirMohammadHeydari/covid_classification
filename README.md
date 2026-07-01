@@ -1,77 +1,217 @@
-🧠 COVID-19 CT & X-Ray Image Classification using PyTorch
-📌 Overview
+# 🩺 COVID-19 CT & X-Ray Image Classification using PyTorch
 
-This project is a deep learning pipeline for classifying COVID-19 and normal cases using CT scan and X-ray images.
+A deep learning project for automatic COVID-19 diagnosis from **CT scan** and **Chest X-ray** images using **Transfer Learning** with **ResNet-50**. The project follows a modular PyTorch architecture and includes data preprocessing, model training, evaluation, and visualization.
 
-The model is built using Transfer Learning (ResNet-50) in PyTorch and trained on a mixed dataset of CT and X-ray images.
+---
 
-🚀 Features
-🧠 Transfer Learning with ResNet-50
-🏥 Multi-modal dataset (CT + X-ray)
-📊 Training / Validation / Testing pipeline
-📉 Loss & Accuracy visualization
-📈 Confusion Matrix & Classification Report
-🧱 Fully modular PyTorch code structure
-🗂 Dataset
+# 📖 Project Overview
 
-The dataset is structured as:
+Early detection of COVID-19 from medical images can assist healthcare professionals in making faster clinical decisions. This project implements a complete deep learning pipeline for binary image classification using transfer learning.
 
+The model leverages a pretrained **ResNet-50** backbone and is fine-tuned to distinguish between **COVID-19** and **Normal** cases from both CT scans and chest X-ray images.
+
+---
+
+# ✨ Features
+
+- Modular PyTorch project structure
+- Transfer Learning with pretrained ResNet-50
+- Multi-modal medical image classification (CT & X-ray)
+- Data augmentation and preprocessing
+- Training, validation, and testing pipelines
+- Automatic best model checkpointing
+- Early stopping
+- Learning curve visualization
+- Confusion Matrix generation
+- Classification Report
+- Precision, Recall, F1-score, and Accuracy evaluation
+
+---
+
+# 📂 Dataset Structure
+
+```
 data/
 ├── ct/
 │   ├── covid/
 │   └── normal/
+│
 └── xray/
     ├── covid/
     └── normal/
+```
 
-Source: Kaggle COVID-19 X-ray & CT dataset
+**Dataset Source**
 
-🧠 Model Architecture
-Backbone: ResNet-50 (pretrained on ImageNet)
-Fully connected head:
-Linear → ReLU → Dropout → Linear → Sigmoid
-⚙️ Training Pipeline
+- Kaggle COVID-19 CT & Chest X-ray Dataset
 
-The pipeline includes:
+---
 
-Dataset loading using custom PyTorch Dataset
-Train / Validation split
-Binary Cross Entropy Loss
-Adam optimizer
-Early stopping (best model saving)
-📊 Results
+# 🧠 Model Architecture
 
-Model performance is evaluated using:
+**Backbone**
 
-Accuracy
-Loss curves
-Confusion Matrix
-Classification Report
-📈 Example Outputs
-Training vs Validation loss curve
-Accuracy improvement over epochs
-Confusion matrix on test set
-🧪 Evaluation Metrics
-Precision
-Recall
-F1-score
-Accuracy
-🧱 Project Structure
-dataset.py      → Custom PyTorch Dataset
-models/         → ResNet model definition
-train.py        → Training loop
-eval.py         → Validation loop
-test.py         → Final evaluation
-main.py         → Entry point
-config.py       → Hyperparameters
-▶️ How to Run
+- ResNet-50 (ImageNet pretrained)
+
+**Classification Head**
+
+```
+Input Image
+      │
+      ▼
+ResNet-50 Backbone
+      │
+      ▼
+Global Average Pooling
+      │
+      ▼
+Linear Layer
+      │
+      ▼
+ReLU
+      │
+      ▼
+Dropout
+      │
+      ▼
+Linear Layer
+      │
+      ▼
+Sigmoid
+```
+
+---
+
+# ⚙️ Training Pipeline
+
+The training workflow consists of:
+
+1. Dataset Loading
+2. Image Transformations
+3. Data Augmentation
+4. Train / Validation Split
+5. Transfer Learning
+6. Binary Classification Training
+7. Early Stopping
+8. Best Model Saving
+9. Performance Evaluation
+
+---
+
+# 📊 Evaluation Metrics
+
+The trained model is evaluated using:
+
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- Confusion Matrix
+- Classification Report
+
+---
+
+# 📈 Training Outputs
+
+During training, the project automatically generates:
+
+- Training Loss Curve
+- Validation Loss Curve
+- Accuracy Curve
+- Confusion Matrix
+- Classification Report
+- Best Model Checkpoint
+
+---
+
+# 📁 Project Structure
+
+```
+covid-classification/
+
+├── data/
+├── models/
+├── checkpoints/
+├── results/
+│
+├── train.py
+├── evaluate.py
+├── predict.py
+├── config.py
+│
+└── src/
+    ├── dataset.py
+    ├── model.py
+    ├── trainer.py
+    ├── evaluator.py
+    ├── transforms.py
+    └── utils.py
+```
+
+---
+
+# 🚀 Installation
+
+```bash
+git clone https://github.com/your-username/covid-classification.git
+
+cd covid-classification
+
 pip install -r requirements.txt
-python main.py
-🧠 Key Learnings
-Transfer learning with CNNs
-Handling multi-class image datasets
-Modular deep learning pipeline design
-Evaluation metrics in classification tasks
-👨‍💻 Author
+```
 
-Student project for learning deep learning with PyTorch.
+---
+
+# ▶️ Training
+
+```bash
+python train.py
+```
+
+---
+
+# 📊 Evaluation
+
+```bash
+python evaluate.py
+```
+
+---
+
+# 🔍 Prediction
+
+```bash
+python predict.py --image sample.jpg
+```
+
+---
+
+# 🛠️ Technologies
+
+- Python
+- PyTorch
+- Torchvision
+- NumPy
+- OpenCV
+- Matplotlib
+- Scikit-Learn
+
+---
+
+# 🔬 Future Improvements
+
+- Vision Transformers (ViT)
+- EfficientNet
+- DenseNet
+- Grad-CAM Visualization
+- TensorBoard Integration
+- Mixed Precision Training
+- Hyperparameter Optimization
+- Docker Deployment
+
+---
+
+# 📄 License
+
+This project is intended for educational and research purposes.
+
